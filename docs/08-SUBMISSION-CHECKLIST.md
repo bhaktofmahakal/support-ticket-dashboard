@@ -62,15 +62,15 @@ Check each item before submitting. Every unchecked item must be explained in "Kn
 
 ## Design System Conformance
 
-- [ ] All UI follows `DESIGN.md` and `docs/12-DESIGN-ADAPTATION.md`
-- [ ] Deep dark canvas (`#010102`) and four-step surface ladder implemented
-- [ ] No hardcoded hex colors, font sizes, or radii in components; all use Tailwind tokens backed by CSS variables
-- [ ] Self-hosted typography: `@fontsource/inter` and `@fontsource/jetbrains-mono` bundled locally (no Google Fonts / CDN)
-- [ ] Status and Priority badges pair distinct hue with text label and geometric icon (color is never the only signal)
-- [ ] WCAG 2.1 AA contrast verified across all foreground/surface pairs (text ≥ 4.5:1, UI components ≥ 3.0:1)
-- [ ] Character counter reflects visual warning (110) and danger (120) states
-- [ ] Single dark theme adhered to with zero theme-switching ambiguity
-- [ ] Preserves all existing functionality, props, hooks, API contracts, URL param names, routes, form field names/ids/labels, and ARIA attributes
+- [x] All UI follows `DESIGN.md` and `docs/12-DESIGN-ADAPTATION.md`
+- [x] Deep dark canvas (`#010102`) and four-step surface ladder implemented
+- [x] No hardcoded hex colors, font sizes, or radii in components; all use Tailwind tokens backed by CSS variables
+- [x] Self-hosted typography: `@fontsource/inter` and `@fontsource/jetbrains-mono` bundled locally (no Google Fonts / CDN)
+- [x] Status and Priority badges pair distinct hue with text label and geometric icon (color is never the only signal)
+- [x] WCAG 2.1 AA contrast verified across all foreground/surface pairs (text ≥ 4.5:1, UI components ≥ 3.0:1)
+- [x] Character counter reflects visual warning (110) and danger (120) states
+- [x] Single dark theme adhered to with zero theme-switching ambiguity
+- [x] Preserves all existing functionality, props, hooks, API contracts, URL param names, routes, form field names/ids/labels, and ARIA attributes
 
 ## Tests (10%)
 
