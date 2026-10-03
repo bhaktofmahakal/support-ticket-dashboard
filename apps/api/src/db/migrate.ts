@@ -46,11 +46,13 @@ export function runMigrations(
       const sql = fs.readFileSync(filePath, 'utf-8');
       applyMigration(file, sql);
       newlyApplied.push(file);
-      console.log(`[Migrations] Applied: ${file}`);
+      if (process.env.NODE_ENV !== 'test') {
+        console.log(`[Migrations] Applied: ${file}`);
+      }
     }
   }
 
-  if (newlyApplied.length === 0) {
+  if (newlyApplied.length === 0 && process.env.NODE_ENV !== 'test') {
     console.log('[Migrations] Database is up to date.');
   }
 

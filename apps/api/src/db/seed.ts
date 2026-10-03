@@ -352,14 +352,16 @@ export function seedDatabase(
   db: Database.Database = getDatabase(),
   options: { reset?: boolean; ifEmpty?: boolean } = {}
 ): number {
-  const { reset = false, ifEmpty = false } = options;
+  const { reset = false, ifEmpty = true } = options;
 
   if (ifEmpty && !reset) {
     const existingCount = db
       .prepare('SELECT COUNT(*) as count FROM tickets')
       .get() as { count: number };
     if (existingCount.count > 0) {
-      console.log(`[Seed] Database already contains ${existingCount.count} tickets. Skipping seed.`);
+      if (process.env.NODE_ENV !== 'test') {
+        console.log(`[Seed] Database already contains ${existingCount.count} tickets. Skipping seed.`);
+      }
       return 0;
     }
   }
@@ -368,7 +370,9 @@ export function seedDatabase(
     if (reset) {
       db.exec('DELETE FROM tickets;');
       db.exec("DELETE FROM sqlite_sequence WHERE name = 'tickets';");
-      console.log('[Seed] Cleared existing tickets table.');
+      if (process.env.NODE_ENV !== 'test') {
+        console.log('[Seed] Cleared existing tickets table.');
+      }
     }
 
     const insertStmt = db.prepare(`
@@ -397,7 +401,9 @@ export function seedDatabase(
   });
 
   insertTicket();
-  console.log(`[Seed] Successfully seeded ${BENCHMARK_TICKETS.length} tickets.`);
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(`[Seed] Successfully seeded ${BENCHMARK_TICKETS.length} tickets.`);
+  }
   return BENCHMARK_TICKETS.length;
 }
 
