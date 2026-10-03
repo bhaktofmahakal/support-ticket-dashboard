@@ -4,83 +4,83 @@ Check each item before submitting. Every unchecked item must be explained in "Kn
 
 ## Code
 
-- [ ] `npm run setup` (migrate + seed) runs without errors
-- [ ] `npm run dev` starts API + web concurrently
-- [ ] `npm run build` produces production bundle without errors
-- [ ] `npm start` serves the full app (migrate → seed if empty → serve)
-- [ ] `npm run test` — all tests pass
-- [ ] `npm run typecheck` — no TypeScript errors
-- [ ] `npm run lint` — no lint errors
-- [ ] No `console.log` in production code (only in dev/debug)
-- [ ] No hardcoded localhost URLs (use relative `/api` paths)
-- [ ] `.gitignore` excludes `node_modules/`, `dist/`, `data/`, `.env`
+- [x] `npm run setup` (migrate + seed) runs without errors
+- [x] `npm run dev` starts API + web concurrently
+- [x] `npm run build` produces production bundle without errors
+- [x] `npm start` serves the full app (migrate → seed if empty → serve)
+- [x] `npm run test` — all tests pass (56 passed: 48 API + 8 Web)
+- [x] `npm run typecheck` — no TypeScript errors
+- [x] `npm run lint` — no lint errors
+- [x] No `console.log` in production code (only in dev/debug)
+- [x] No hardcoded localhost URLs (use relative `/api` paths)
+- [x] `.gitignore` excludes `node_modules/`, `dist/`, `data/`, `.env`
 
 ## Functional Correctness (30%)
 
-- [ ] Create ticket: all validations work (title 120, email, enums, whitespace)
-- [ ] List tickets: search + filter + sort + pagination all work together
-- [ ] View ticket: all fields displayed
-- [ ] Update ticket: status and priority persist after refresh
-- [ ] Stats: reflect entire dataset, not filtered subset
-- [ ] Stats refresh after create/update
-- [ ] Seed data: 36 tickets with varied status/priority
+- [x] Create ticket: all validations work (title 120, email, enums, whitespace)
+- [x] List tickets: search + filter + sort + pagination all work together
+- [x] View ticket: all fields displayed
+- [x] Update ticket: status and priority persist after refresh
+- [x] Stats: reflect entire dataset, not filtered subset
+- [x] Stats refresh after create/update
+- [x] Seed data: 36 tickets with varied status/priority
 
 ## API Quality (20%)
 
-- [ ] POST → 201, GET → 200, PATCH → 200
-- [ ] Validation errors → 400 with `{error:{code,message,details}}`
-- [ ] Not found → 404 with `{error:{code,message}}`
-- [ ] Internal errors → 500 with generic message (no stack trace)
-- [ ] Malformed JSON → 400
-- [ ] Unknown route → 404
-- [ ] PATCH rejects unknown fields
-- [ ] PATCH rejects empty body
-- [ ] GET /api/tickets/stats registered before /:id
+- [x] POST → 201, GET → 200, PATCH → 200
+- [x] Validation errors → 400 with `{error:{code,message,details}}`
+- [x] Not found → 404 with `{error:{code,message}}`
+- [x] Internal errors → 500 with generic message (no stack trace)
+- [x] Malformed JSON → 400
+- [x] Unknown route → 404
+- [x] PATCH rejects unknown fields
+- [x] PATCH rejects empty body
+- [x] GET /api/tickets/stats registered before /:id
 
 ## Code Structure (25%)
 
-- [ ] Monorepo: apps/api, apps/web, packages/shared
-- [ ] Layered API: routes → service → repository
-- [ ] Shared zod schemas used on both frontend and backend
-- [ ] No business logic in route handlers
-- [ ] No SQL in service layer
-- [ ] Each file has a single responsibility
+- [x] Monorepo: apps/api, apps/web, packages/shared
+- [x] Layered API: routes → service → repository
+- [x] Shared zod schemas used on both frontend and backend
+- [x] No business logic in route handlers
+- [x] No SQL in service layer
+- [x] Each file has a single responsibility
 
 ## Usability (15%)
 
-- [ ] Responsive: table on desktop, cards on mobile
-- [ ] No horizontal scroll at 375px
-- [ ] Loading skeletons during fetch
-- [ ] Empty state: "no tickets yet" with create CTA
-- [ ] Empty state: "no matches" with clear-filters
-- [ ] Error state with retry button
-- [ ] 404 state for unknown ticket ID
-- [ ] Debounced search (300ms)
-- [ ] Filter/search changes reset page to 1
-- [ ] URL state: filters/search/sort/page survive refresh
-- [ ] Accessible: labels, focus rings, aria-live, semantic HTML
+- [x] Responsive: table on desktop, cards on mobile
+- [x] No horizontal scroll at 375px
+- [x] Loading skeletons during fetch
+- [x] Empty state: "no tickets yet" with create CTA
+- [x] Empty state: "no matches" with clear-filters
+- [x] Error state with retry button
+- [x] 404 state for unknown ticket ID
+- [x] Debounced search (300ms)
+- [x] Filter/search changes reset page to 1
+- [x] URL state: filters/search/sort/page survive refresh
+- [x] Accessible: labels, focus rings, aria-live, semantic HTML
 
 ## Tests (10%)
 
-- [ ] All 56 tests in docs/07 implemented and green (48 API tests, 8 frontend tests)
-- [ ] Phase 3 gate: every API test listed in docs/07 is green (all 48 API tests pass)
-- [ ] Phase 6 gate: every frontend test listed in docs/07 is green (all 8 frontend tests pass)
-- [ ] ≥3 meaningful automated tests (assignment minimum)
-- [ ] Isolated: each test uses fresh in-memory DB
-- [ ] Covers creation, validation, querying, updates, stats, error shapes, seed/migrations
-- [ ] Frontend tests: form errors, pending states, list states, URL filter sync, empty/no-match, retry
+- [x] All 56 tests in docs/07 implemented and green (48 API tests, 8 frontend tests)
+- [x] Phase 3 gate: every API test listed in docs/07 is green (all 48 API tests pass)
+- [x] Phase 6 gate: every frontend test listed in docs/07 is green (all 8 frontend tests pass)
+- [x] ≥3 meaningful automated tests (assignment minimum)
+- [x] Isolated: each test uses fresh in-memory DB
+- [x] Covers creation, validation, querying, updates, stats, error shapes, seed/migrations
+- [x] Frontend tests: form errors, pending states, list states, URL filter sync, empty/no-match, retry
 
 ## README
 
-- [ ] Setup steps (prerequisites, install, run)
-- [ ] Required environment variables (NODE_VERSION, PORT, DATABASE_PATH)
-- [ ] How to run tests
-- [ ] Technical choices with rationale
-- [ ] Assumptions
-- [ ] Known limitations
-- [ ] Time spent (honest log)
-- [ ] AI usage description
-- [ ] Screenshots or demo video
+- [x] Setup steps (prerequisites, install, run)
+- [x] Required environment variables (NODE_VERSION, PORT, DATABASE_PATH)
+- [x] How to run tests
+- [x] Technical choices with rationale
+- [x] Assumptions
+- [x] Known limitations
+- [x] Time spent (honest log)
+- [x] AI usage description
+- [x] Screenshots or demo video
 
 ### README Skeleton
 
@@ -148,20 +148,20 @@ npm run test:web # Frontend tests only
 | Phase 4: Frontend Foundation & List | 65m |
 | Phase 5: Create Form, Detail & Update | 50m |
 | Phase 6: Polish, Accessibility & Frontend Tests | 40m |
-| Phase 7: Production Build, README & Deploy | Pending |
-| **Total Logged** | **5h 25m** |
+| Phase 7: Production Build, README & Deploy | 25m |
+| **Total Logged** | **5h 50m** |
 
 ## AI Usage
 
-[Brief description of how AI tools were used]
+[Detailed in root README.md]
 
 ## Screenshots
 
-[Embed 3-4 screenshots]
+[Screenshots stored in docs/screenshots/ and linked in root README.md]
 ```
 
 ## Render Deployment
 
-- [ ] `render.yaml` present and valid
-- [ ] Health check path: `/api/health`
-- [ ] Ephemeral SQLite caveat documented in README and docs/11
+- [x] `render.yaml` present and valid
+- [x] Health check path: `/api/health`
+- [x] Ephemeral SQLite caveat documented in README and docs/11

@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: support-ticket-dashboard
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_PATH
+        value: ./data/tickets.db
