@@ -17,8 +17,8 @@ This guide is designed for technical interviewers and code reviewers. It covers 
 - `package.json`: Declares package metadata, exporting TypeScript source directly without intermediate compilation.
 - `tsconfig.json`: Shared package TypeScript settings.
 - `src/index.ts`: Central export point for all Zod schemas, TypeScript types, and domain constants.
-- `src/schemas.ts`: Zod validation schemas for Ticket domain: `TicketSchema`, `CreateTicketSchema`, `UpdateTicketSchema`, `ListQuerySchema`, `TicketStatsSchema`, `ErrorResponseSchema`.
-- `src/types.ts`: Inferred TypeScript types (`Ticket`, `CreateTicketInput`, `UpdateTicketInput`, `ListQuery`, `TicketStats`, `ErrorResponse`, etc.).
+- `src/schemas/ticket.ts`: Zod validation schemas for Ticket domain: `ticketSchema`, `createTicketSchema`, `updateTicketSchema`, `querySchema`, `statsSchema`, `errorResponseSchema`.
+- `src/types/ticket.ts`: Inferred TypeScript types (`Ticket`, `CreateTicketInput`, `UpdateTicketInput`, `ListQuery`, `TicketStats`, `ErrorResponse`, etc.).
 
 ### `apps/api` (Express 5 REST API & SQLite Persistence)
 - `package.json`: Backend dependencies (`better-sqlite3`, `express`, `cors`, `helmet`, `zod`, `tsup`, `tsx`).
@@ -142,7 +142,7 @@ This guide is designed for technical interviewers and code reviewers. It covers 
 ### Task 1: Add a New Status (`'Waiting on Customer'`)
 - **Estimated Time**: 5 minutes
 - **Files to Edit**:
-  1. `packages/shared/src/schemas.ts`: Add `'Waiting on Customer'` to `TicketStatusSchema = z.enum([...])`.
+  1. `packages/shared/src/schemas/ticket.ts`: Add `'Waiting on Customer'` to `TicketStatusSchema = z.enum([...])`.
   2. `apps/api/migrations/001_create_tickets.sql` (or new migration `002_add_status.sql`): Update CHECK constraint `status IN (...)`.
   3. `apps/web/src/components/common/Badge.tsx`: Add badge color variant for `'Waiting on Customer'` (e.g., purple/indigo styling).
   4. `apps/web/src/components/dashboard/FilterBar.tsx`: Add option to status dropdown filter.
@@ -153,7 +153,7 @@ This guide is designed for technical interviewers and code reviewers. It covers 
 ### Task 2: Add a New Filter (Filter by `customerEmail`)
 - **Estimated Time**: 4 minutes
 - **Files to Edit**:
-  1. `packages/shared/src/schemas.ts`: Add `customerEmail: z.string().optional()` to `ListQuerySchema`.
+  1. `packages/shared/src/schemas/ticket.ts`: Add `customerEmail: z.string().optional()` to `ListQuerySchema`.
   2. `apps/api/src/repository/ticket.repository.ts`: Add `if (query.customerEmail) { whereClauses.push('customer_email = ?'); params.push(query.customerEmail.toLowerCase().trim()); }` to `buildWhereClause`.
   3. `apps/web/src/components/dashboard/FilterBar.tsx`: Add email filter input and wire to `useUrlState`.
 
@@ -162,7 +162,7 @@ This guide is designed for technical interviewers and code reviewers. It covers 
 ### Task 3: Add a New Field (`category` on Tickets)
 - **Estimated Time**: 7 minutes
 - **Files to Edit**:
-  1. `packages/shared/src/schemas.ts`:
+  1. `packages/shared/src/schemas/ticket.ts`:
      - Add `TicketCategorySchema = z.enum(['Billing', 'Technical', 'General'])`.
      - Add `category` to `TicketSchema`, `CreateTicketSchema`, and `UpdateTicketSchema`.
   2. `apps/api/migrations/002_add_category.sql`: `ALTER TABLE tickets ADD COLUMN category TEXT NOT NULL DEFAULT 'General';`.
@@ -175,7 +175,7 @@ This guide is designed for technical interviewers and code reviewers. It covers 
 ### Task 4: Change Default Page Size (From 10 to 20)
 - **Estimated Time**: 2 minutes
 - **Files to Edit**:
-  1. `packages/shared/src/schemas.ts`: In `ListQuerySchema`, change `pageSize: z.coerce.number().int().positive().max(100).default(10)` to `.default(20)`.
+  1. `packages/shared/src/schemas/ticket.ts`: In `querySchema`, change `pageSize` or repository `PAGE_SIZE` to 20.
   2. `apps/web/src/hooks/useUrlState.ts`: Update default `pageSize` fallback from 10 to 20.
 
 ---
@@ -183,8 +183,8 @@ This guide is designed for technical interviewers and code reviewers. It covers 
 ### Task 5: Add Sort by Priority (`priority_desc` / `priority_asc`)
 - **Estimated Time**: 6 minutes
 - **Files to Edit**:
-  1. `packages/shared/src/schemas.ts`:
-     - Update `sortOrder` in `ListQuerySchema` to accept `'newest' | 'oldest' | 'priority_desc' | 'priority_asc'`.
+  1. `packages/shared/src/schemas/ticket.ts`:
+     - Update `sort` in `querySchema` to accept `'newest' | 'oldest' | 'priority_desc' | 'priority_asc'`.
   2. `apps/api/src/repository/ticket.repository.ts`:
      - In `findAll()`, map `'priority_desc'` to `CASE priority WHEN 'High' THEN 3 WHEN 'Medium' THEN 2 WHEN 'Low' THEN 1 END DESC, created_at DESC, id DESC`.
      - Map `'priority_asc'` to `CASE priority WHEN 'High' THEN 3 WHEN 'Medium' THEN 2 WHEN 'Low' THEN 1 END ASC, created_at DESC, id DESC`.
