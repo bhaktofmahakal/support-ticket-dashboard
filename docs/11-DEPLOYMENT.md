@@ -136,5 +136,50 @@ npm start
    - Set to `/api/health`.
 6. **Deploy**:
    - Click **Create Web Service**.
-   - Render runs `npm ci && npm run build`, bundles Express and static web assets, runs DB migrations, and seeds initial data.
+   - Render runs `npm ci --include=dev && npm run build`, bundles Express and static web assets, runs DB migrations, and seeds initial data.
    - Note: Render free tier services spin down after 15 minutes of inactivity; initial cold start may take 30-50 seconds.
+
+---
+
+## 6. Post-Deploy Checklist & Rollback Operations
+
+### Post-Deploy Verification
+After every push or manual deployment:
+1. **Run Automated Smoke Verification**:
+   Execute the zero-dependency verification suite against the live service:
+   ```bash
+   npm run smoke -- https://support-ticket-dashboard-bpf3.onrender.com
+   ```
+   Or directly with Node:
+   ```bash
+   node scripts/smoke.mjs https://support-ticket-dashboard-bpf3.onrender.com
+   ```
+   All 13 read-only checks must pass (status ok, pagination, filter independence, 404/400 validation shapes, SPA deep links, and live-safe triage update/restore roundtrip).
+
+2. **Inspect Runtime Logs**:
+   Use the Render CLI to inspect streaming or historical logs:
+   ```bash
+   render logs --resources srv-db0fkl60tbcc73fkqghg --tail
+   ```
+   Or query recent logs:
+   ```bash
+   render logs --resources srv-db0fkl60tbcc73fkqghg --limit 50
+   ```
+
+3. **Instance Keep-Warm Automation**:
+   A scheduled GitHub Actions workflow (`.github/workflows/keep-warm.yml`) runs every 10 minutes, making an automated `curl -fsS --retry 3 --max-time 60 /api/health` call to prevent free-tier instances from spinning down during evaluation windows.
+   > **Note**: GitHub automatically disables scheduled workflows after 60 days of repository inactivity. This keeps the free instance from spinning down (so in-session state survives longer between requests) but does NOT make local SQLite storage persistent across redeploys.
+
+### Rollback Strategy
+Every push to the `main` branch on GitHub automatically triggers a redeploy on Render. If an issue is discovered in production:
+1. **Git Revert (Recommended)**:
+   Revert the faulty commit on `main` and push:
+   ```bash
+   git revert HEAD
+   git push origin main
+   ```
+   Render detects the push and deploys the previous working state automatically within 3–4 minutes.
+2. **Instant Rollback via Render Dashboard**:
+   - Open [dashboard.render.com/web/srv-db0fkl60tbcc73fkqghg/deploys](https://dashboard.render.com/web/srv-db0fkl60tbcc73fkqghg/deploys).
+   - Find the last known healthy deployment.
+   - Click the three dots menu `...` > **Rollback to this deploy**.

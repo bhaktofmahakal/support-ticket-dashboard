@@ -1,5 +1,6 @@
 # Support Ticket Dashboard
 
+[![CI](https://github.com/bhaktofmahakal/support-ticket-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/bhaktofmahakal/support-ticket-dashboard/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/tests-56%20passed-brightgreen.svg)](#running-tests)
 [![TypeScript](https://img.shields.io/badge/typescript-strict%205.8-blue.svg)](#project-structure)
 [![Express](https://img.shields.io/badge/express-5.1-black.svg)](#api-reference)
@@ -32,7 +33,7 @@
 
 ```bash
 # 1. Clone the repository and enter directory
-git clone https://github.com/your-username/support-ticket-dashboard.git
+git clone https://github.com/bhaktofmahakal/support-ticket-dashboard.git
 cd support-ticket-dashboard
 
 # 2. Ensure correct Node version
@@ -331,11 +332,13 @@ Disciplined development strictly tracked within the 6-hour evaluation budget:
 
 ---
 
-## Live Deployment (Render Bonus)
+## Live Deployment
 
-- **Live URL**: `<<LIVE_URL>>` *(Deployable to Render via `render.yaml`)*
-- **Infrastructure**: Single Web Service running on Node.js 20 LTS.
-- **Health Check**: `/api/health`
+- **Live URL**: [https://support-ticket-dashboard-bpf3.onrender.com](https://support-ticket-dashboard-bpf3.onrender.com)
+- **Repository**: [https://github.com/bhaktofmahakal/support-ticket-dashboard](https://github.com/bhaktofmahakal/support-ticket-dashboard)
+- **Infrastructure**: Single Render Web Service running Node.js 20 LTS (Express 5 backend + React 19 static SPA).
+- **Health Check**: [https://support-ticket-dashboard-bpf3.onrender.com/api/health](https://support-ticket-dashboard-bpf3.onrender.com/api/health)
 
-> **Note on Render Free Tier Persistence**:
-> Render's Free Tier provides an ephemeral container filesystem. Any container restart or idle sleep-cycle clears local disk state. To ensure an exemplary reviewer experience, the application automatically runs `seedDatabase(ifEmpty: true)` upon startup—guaranteeing that reviewers always land on a fully populated, pristine support dashboard. For permanent cloud persistence, attaching a Render Persistent Disk or connecting a managed PostgreSQL database is the designated production path.
+> **Honest Caveats on Render Free-Tier Hosting**:
+> 1. **Ephemeral Filesystem**: Render Free Tier containers use ephemeral local disk storage. Data resets when the container restarts or redeploys; upon startup, `seedDatabase({ ifEmpty: true })` automatically repopulates the 36 benchmark tickets so reviewers always encounter a pristine, populated state.
+> 2. **Cold Starts**: Render spins down free web services after 15 minutes of inactivity. The initial request after idle may take 30–60 seconds while the container spins up. Subsequent requests respond instantly (<50ms).
