@@ -1,0 +1,13 @@
+name: Keep Warm (Manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ping:
+    name: Ping Health Endpoint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Live Service Health
+        run: |
+          curl -fsS --retry 3 --max-time 60 https://support-ticket-dashboard-bpf3.onrender.com/api/health
