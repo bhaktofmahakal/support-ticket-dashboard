@@ -9,6 +9,5 @@ export function useTickets(query: Partial<ListQuery>) {
     queryFn: () => apiClient.getTickets(query),
     placeholderData: keepPreviousData,
     staleTime: 15_000,
-    retry: 1,
   });
 }

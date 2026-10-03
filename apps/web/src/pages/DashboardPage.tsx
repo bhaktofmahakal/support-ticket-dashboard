@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useUrlState } from '../hooks/useUrlState.js';
 import { useTickets } from '../hooks/useTickets.js';
 import { StatsCards } from '../components/dashboard/StatsCards.js';
@@ -11,6 +11,9 @@ import { TableSkeleton } from '../components/common/LoadingSkeleton.js';
 import { ErrorMessage } from '../components/common/ErrorMessage.js';
 
 export function DashboardPage() {
+  useEffect(() => {
+    document.title = 'Tickets Overview | SupportDesk';
+  }, []);
   const {
     search,
     status,

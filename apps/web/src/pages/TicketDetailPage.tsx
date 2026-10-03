@@ -33,6 +33,9 @@ export function TicketDetailPage() {
     if (ticket) {
       setSelectedStatus(ticket.status);
       setSelectedPriority(ticket.priority);
+      document.title = `#${ticket.id} - ${ticket.title} | SupportDesk`;
+    } else {
+      document.title = 'Ticket Details | SupportDesk';
     }
   }, [ticket]);
 

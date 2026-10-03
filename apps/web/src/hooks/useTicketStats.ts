@@ -7,6 +7,5 @@ export function useTicketStats() {
     queryKey: ticketKeys.stats(),
     queryFn: () => apiClient.getTicketStats(),
     staleTime: 15_000,
-    retry: 1,
   });
 }

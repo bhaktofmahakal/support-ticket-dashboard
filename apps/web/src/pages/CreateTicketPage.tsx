@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { createTicketSchema, type TicketPriority } from '@support-ticket/shared';
@@ -26,6 +26,10 @@ export function CreateTicketPage() {
   const location = useLocation();
   const queryClient = useQueryClient();
   const { showToast } = useToast();
+
+  useEffect(() => {
+    document.title = 'Create New Ticket | SupportDesk';
+  }, []);
 
   const [form, setForm] = useState<FormState>({
     title: '',
