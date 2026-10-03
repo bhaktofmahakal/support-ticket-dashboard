@@ -145,11 +145,11 @@ npm run test:web # Frontend tests only
 | Phase 1: Scaffold, Database & Seed | 40m |
 | Phase 2: Express API & Middleware | 45m |
 | Phase 3: Backend Test Suite | 40m |
-| Phase 4: Frontend Foundation & List | Pending |
+| Phase 4: Frontend Foundation & List | 65m |
 | Phase 5: Create Form, Detail & Update | Pending |
 | Phase 6: Polish, Accessibility & Frontend Tests | Pending |
 | Phase 7: Production Build, README & Deploy | Pending |
-| **Total Logged** | **2h 50m** |
+| **Total Logged** | **3h 55m** |
 
 ## AI Usage
 
