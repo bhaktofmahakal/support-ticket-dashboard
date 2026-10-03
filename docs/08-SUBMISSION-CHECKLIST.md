@@ -60,6 +60,18 @@ Check each item before submitting. Every unchecked item must be explained in "Kn
 - [x] URL state: filters/search/sort/page survive refresh
 - [x] Accessible: labels, focus rings, aria-live, semantic HTML
 
+## Design System Conformance
+
+- [ ] All UI follows `DESIGN.md` and `docs/12-DESIGN-ADAPTATION.md`
+- [ ] Deep dark canvas (`#010102`) and four-step surface ladder implemented
+- [ ] No hardcoded hex colors, font sizes, or radii in components; all use Tailwind tokens backed by CSS variables
+- [ ] Self-hosted typography: `@fontsource/inter` and `@fontsource/jetbrains-mono` bundled locally (no Google Fonts / CDN)
+- [ ] Status and Priority badges pair distinct hue with text label and geometric icon (color is never the only signal)
+- [ ] WCAG 2.1 AA contrast verified across all foreground/surface pairs (text ≥ 4.5:1, UI components ≥ 3.0:1)
+- [ ] Character counter reflects visual warning (110) and danger (120) states
+- [ ] Single dark theme adhered to with zero theme-switching ambiguity
+- [ ] Preserves all existing functionality, props, hooks, API contracts, URL param names, routes, form field names/ids/labels, and ARIA attributes
+
 ## Tests (10%)
 
 - [x] All 56 tests in docs/07 implemented and green (48 API tests, 8 frontend tests)

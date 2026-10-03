@@ -1,6 +1,6 @@
 # Build Phases
 
-Total budget: **6 hours** (5h 25m core build + 35m buffer).  
+Total budget: **6 hours** (5h 45m core build + 15m buffer).  
 Structured into 7 sequential phases aligned with development milestones and strict verification exit gates.
 
 ---
@@ -82,9 +82,13 @@ Structured into 7 sequential phases aligned with development milestones and stri
 
 ---
 
-## Phase 4 — Frontend Foundation, Dashboard & List (65 min)
+## Phase 4 — Frontend Foundation, Dashboard & List (75 min)
 
-- [ ] App shell in `apps/web`: responsive layout, header with logo & "New Ticket" button, Tailwind theme tokens, accessible status/priority badges.
+- [ ] **Design Token Layer & Typography Foundation** (referencing `docs/12-DESIGN-ADAPTATION.md` and `DESIGN.md`):
+  - Setup CSS variables in `apps/web/src/index.css` for Linear-inspired design tokens (surfaces, borders, text, accents, semantics).
+  - Configure `tailwind.config.ts` extending theme tokens (`background`, `surface`, `border`, `text-*`, `accent`, `focus-ring`).
+  - Self-host `@fontsource/inter` and `@fontsource/jetbrains-mono` imported in `apps/web/src/main.tsx`.
+- [ ] App shell in `apps/web`: responsive layout, header with logo & "New Ticket" button, Tailwind theme tokens, accessible status/priority badges per `docs/12-DESIGN-ADAPTATION.md`.
 - [ ] Typed API client using shared types; parses standard `{ error }` payload into `ApiError`.
 - [ ] TanStack Query setup: `useTickets(params)`, `useTicketStats()`, `placeholderData: keepPreviousData`.
 - [ ] Summary stats cards (Total, Open, In Progress, Resolved) powered by `/api/tickets/stats` with loading skeletons.
@@ -107,22 +111,22 @@ Structured into 7 sequential phases aligned with development milestones and stri
 
 ## Phase 5 — Create Ticket Form, Detail View & Inline Update (50 min)
 
-- [ ] Create Ticket page (`/tickets/new`):
-  - Form fields: Title (with live `x/120` character counter), Description (textarea), Customer Email, Priority dropdown.
+- [ ] Create Ticket page (`/tickets/new`) styled per `docs/12-DESIGN-ADAPTATION.md`:
+  - Form fields: Title (with live `x/120` character counter styled with mono font and warning/danger states), Description (textarea), Customer Email, Priority dropdown.
   - Client-side validation using shared Zod schema on blur and submit.
-  - Inline error messages associated via `aria-describedby`.
-  - Submit button disabled with spinner during request.
+  - Inline error messages styled with danger token and associated via `aria-describedby`.
+  - Submit button (`button-primary`) disabled with spinner during request.
   - Server validation errors (400 details) mapped back to respective fields.
   - On success: display toast notification and **navigate immediately to `/tickets/:id`**; invalidate stats + tickets queries.
-- [ ] Ticket Detail page (`/tickets/:id`):
+- [ ] Ticket Detail page (`/tickets/:id`) styled per `docs/12-DESIGN-ADAPTATION.md`:
   - Displays full ticket details (formatted timestamps with full ISO in title, preserved description line breaks).
   - **Back Link**: Preserves the previous list URL query string so the user returns to their exact filtered list view.
-  - Inline dropdowns to update Status and Priority.
+  - Inline dropdowns to update Status and Priority with instant feedback.
   - Immediate `PATCH` call with optimistic or loading feedback.
   - On error: rollback to previous value + error toast.
   - On success: toast confirmation, updated timestamp refreshes, invalidates stats and list caches.
   - 404 state for non-existent ticket ID.
-- [ ] Accessible Toast notifications (`aria-live="polite"`, auto-dismiss after 4s).
+- [ ] Accessible Toast notifications (`aria-live="polite"`, auto-dismiss after 4s) styled with `surface-overlay` and hairline border.
 
 **Exit Gate**:
 - Verified in browser: field validation errors, 120-char boundary, valid creation navigating to `/tickets/:id`, back link preserving filter query parameters, inline updates persisting after hard refresh, 404 handling.
@@ -131,10 +135,12 @@ Structured into 7 sequential phases aligned with development milestones and stri
 
 ---
 
-## Phase 6 — Polish, Accessibility, Frontend Tests & Screenshots (45 min)
+## Phase 6 — Polish, Accessibility, Frontend Tests & Screenshots (55 min)
 
-- [ ] Responsive inspection: ensure tap targets ≥40px, no horizontal scroll at 360px/375px/768px/1280px.
-- [ ] Accessibility pass: keyboard navigation flow, visible focus rings, ARIA live regions, semantic tables, contrast ratios.
+- [ ] Design System Conformance & A11y Audit per `docs/12-DESIGN-ADAPTATION.md`:
+  - Responsive inspection: ensure tap targets ≥40px, no horizontal scroll at 360px/375px/768px/1280px.
+  - Accessibility pass: keyboard navigation flow, visible focus rings (`--color-focus-ring`), ARIA live regions, semantic tables, contrast ratios (text ≥4.5:1, UI components ≥3.0:1).
+  - Status/priority badges verify dual signal (icon dot + text label).
 - [ ] Frontend tests (`apps/web/src/__tests__/frontend.test.tsx`):
   - F1: form shows validation errors for invalid input.
   - F2: form disables submit while pending.

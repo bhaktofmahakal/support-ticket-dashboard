@@ -237,5 +237,28 @@ PATCH /api/tickets/:id → validate(updateTicketSchema) → service.update(id, b
 | @types/express | `^5.0.2` | Type definitions for Express 5. |
 | @types/better-sqlite3 | `^7.6.12` | Latest stable type definitions. |
 
+---
+
+## Frontend Design System & Theme Architecture
+
+The frontend styling strictly adheres to `DESIGN.md` and `docs/12-DESIGN-ADAPTATION.md`:
+
+1. **Token Layer (`apps/web/src/index.css`)**:
+   - Defines CSS variables on `:root` backing the token map:
+     - Surfaces: `--color-background` (`#010102`), `--color-surface` (`#0f1011`), `--color-surface-raised` (`#141516`), `--color-surface-overlay` (`#18191a`).
+     - Borders: `--color-border` (`#23252a`), `--color-border-strong` (`#34343a`).
+     - Typography colors: `--color-text-primary` (`#f7f8f8`), `--color-text-secondary` (`#d0d6e0`), `--color-text-muted` (`#8a8f98`), `--color-text-disabled` (`#7c8089`).
+     - Accent & Focus: `--color-accent` (`#5e6ad2`), `--color-accent-hover` (`#828fff`), `--color-accent-focus` (`#5e69d1`), `--color-focus-ring` (`rgba(94, 105, 209, 0.5)`).
+     - Semantic: `--color-success` (`#27a644`), `--color-warning` (`#f2994a`), `--color-danger` (`#eb5757`), plus respective tinted surface fills and borders.
+2. **Tailwind Extension (`apps/web/tailwind.config.ts`)**:
+   - `tailwind.config.ts` extends theme colors directly mapped to CSS variables (`background: 'var(--color-background)'`, `surface: 'var(--color-surface)'`, etc.).
+   - Extends font families with `sans: ['Inter', ...]` and `mono: ['JetBrains Mono', ...]`.
+   - Maps border radii tokens (`xs: '4px'`, `sm: '6px'`, `md: '8px'`, `lg: '12px'`, `xl: '16px'`).
+3. **Self-Hosted Typography (`apps/web/src/main.tsx`)**:
+   - Bundles `@fontsource/inter` (weights 400, 500, 600) and `@fontsource/jetbrains-mono` (weight 400).
+   - Zero external Google Fonts or CDN requests.
+
+---
+
 ### Node Version
 Pinned via `.nvmrc`: `20`

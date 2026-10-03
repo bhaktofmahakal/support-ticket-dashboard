@@ -85,6 +85,10 @@ npm start
    - The ticket detail page back link must preserve the previous list URL query parameters.
    - Responsive layouts: Table on desktop (≥768px), stacked cards on mobile (verified down to 360px without horizontal scroll).
    - Zero console errors, warnings, or unhandled promise rejections.
+6. **Design System & Visual Language**:
+   - All UI follows `DESIGN.md` and `docs/12-DESIGN-ADAPTATION.md`.
+   - No hardcoded colours, font sizes or radii in components. Use only Tailwind theme tokens backed by CSS variables.
+   - Presentational changes must never alter props, hooks, API calls, URL param names, routes, form field names/ids/labels or aria attributes.
 
 ---
 
