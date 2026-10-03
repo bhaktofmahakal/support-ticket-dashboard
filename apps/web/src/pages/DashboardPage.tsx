@@ -53,16 +53,16 @@ export function DashboardPage() {
       {/* 1. Header description */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-text-primary">
             Tickets Overview
           </h1>
-          <p className="text-sm text-slate-500 mt-0.5">
+          <p className="text-sm text-text-muted mt-0.5">
             Monitor, filter, and manage incoming support inquiries.
           </p>
         </div>
         {isFetching && !isLoading && (
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 text-xs font-medium text-brand-700 bg-brand-50 border border-brand-200 rounded-full self-start sm:self-auto animate-pulse">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-ping" />
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 text-xs font-medium text-accent-hover bg-accent/15 border border-accent/30 rounded-full self-start sm:self-auto animate-pulse">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
             Updating tickets...
           </div>
         )}

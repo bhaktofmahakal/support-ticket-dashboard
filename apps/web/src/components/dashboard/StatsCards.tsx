@@ -26,10 +26,8 @@ export function StatsCards() {
     {
       label: 'Total Tickets',
       value: stats.total,
-      textColor: 'text-slate-900',
-      bgColor: 'bg-white',
-      borderColor: 'border-slate-200',
-      iconBg: 'bg-slate-100 text-slate-700',
+      textColor: 'text-text-primary',
+      iconBox: 'bg-surface-raised border border-border text-text-muted',
       icon: (
         <path
           strokeLinecap="round"
@@ -42,10 +40,8 @@ export function StatsCards() {
     {
       label: 'Open',
       value: stats.open,
-      textColor: 'text-blue-700',
-      bgColor: 'bg-white',
-      borderColor: 'border-slate-200',
-      iconBg: 'bg-blue-50 text-blue-700',
+      textColor: 'text-accent-hover',
+      iconBox: 'bg-accent/10 border border-accent/20 text-accent',
       icon: (
         <path
           strokeLinecap="round"
@@ -58,10 +54,8 @@ export function StatsCards() {
     {
       label: 'In Progress',
       value: stats.inProgress,
-      textColor: 'text-amber-700',
-      bgColor: 'bg-white',
-      borderColor: 'border-slate-200',
-      iconBg: 'bg-amber-50 text-amber-700',
+      textColor: 'text-warning',
+      iconBox: 'bg-warning-surface border border-warning-border text-warning',
       icon: (
         <path
           strokeLinecap="round"
@@ -74,10 +68,8 @@ export function StatsCards() {
     {
       label: 'Resolved',
       value: stats.resolved,
-      textColor: 'text-emerald-700',
-      bgColor: 'bg-white',
-      borderColor: 'border-slate-200',
-      iconBg: 'bg-emerald-50 text-emerald-700',
+      textColor: 'text-success',
+      iconBox: 'bg-success-surface border border-success-border text-success',
       icon: (
         <path
           strokeLinecap="round"
@@ -97,17 +89,17 @@ export function StatsCards() {
       {cards.map((card) => (
         <div
           key={card.label}
-          className={`${card.bgColor} ${card.borderColor} border rounded-xl p-4 sm:p-5 shadow-sm transition-all hover:shadow`}
+          className="bg-surface border border-border rounded-lg p-4 sm:p-5 transition-colors hover:border-border-strong"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs sm:text-sm font-medium text-slate-500">{card.label}</span>
-            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${card.iconBg}`}>
+            <span className="text-xs sm:text-sm font-medium text-text-muted">{card.label}</span>
+            <div className={`w-8 h-8 rounded-md flex items-center justify-center ${card.iconBox}`}>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {card.icon}
               </svg>
             </div>
           </div>
-          <div className={`mt-3 text-2xl sm:text-3xl font-bold tracking-tight ${card.textColor}`}>
+          <div className={`mt-3 text-2xl sm:text-3xl font-semibold tracking-tight ${card.textColor}`}>
             {card.value}
           </div>
         </div>

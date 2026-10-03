@@ -9,8 +9,8 @@ interface EmptyStateProps {
 export function EmptyState({ isFiltered, onClearFilters }: EmptyStateProps) {
   if (isFiltered) {
     return (
-      <div className="bg-white rounded-xl border border-slate-200 p-8 text-center shadow-sm">
-        <div className="w-12 h-12 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-3">
+      <div className="bg-surface rounded-lg border border-border p-8 text-center">
+        <div className="w-12 h-12 bg-surface-raised text-text-muted rounded-full flex items-center justify-center mx-auto mb-3 border border-border">
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               strokeLinecap="round"
@@ -20,15 +20,15 @@ export function EmptyState({ isFiltered, onClearFilters }: EmptyStateProps) {
             />
           </svg>
         </div>
-        <h3 className="text-base font-semibold text-slate-900">No matching tickets</h3>
-        <p className="text-sm text-slate-500 mt-1 max-w-sm mx-auto">
+        <h3 className="text-base font-semibold text-text-primary">No matching tickets</h3>
+        <p className="text-sm text-text-muted mt-1 max-w-sm mx-auto">
           We couldn&apos;t find any tickets matching your search query or filter selection.
         </p>
         {onClearFilters && (
           <button
             type="button"
             onClick={onClearFilters}
-            className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-brand-700 bg-brand-50 hover:bg-brand-100 border border-brand-200 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+            className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-text-primary bg-surface-raised hover:bg-surface-overlay border border-border-strong rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus"
           >
             Clear filters
           </button>
@@ -38,8 +38,8 @@ export function EmptyState({ isFiltered, onClearFilters }: EmptyStateProps) {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 p-10 text-center shadow-sm">
-      <div className="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-3.5">
+    <div className="bg-surface rounded-lg border border-border p-10 text-center">
+      <div className="w-14 h-14 bg-accent/10 text-accent rounded-xl flex items-center justify-center mx-auto mb-3.5 border border-accent/20">
         <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
@@ -49,14 +49,14 @@ export function EmptyState({ isFiltered, onClearFilters }: EmptyStateProps) {
           />
         </svg>
       </div>
-      <h3 className="text-lg font-semibold text-slate-900">No tickets yet</h3>
-      <p className="text-sm text-slate-500 mt-1 max-w-md mx-auto">
+      <h3 className="text-lg font-semibold text-text-primary">No tickets yet</h3>
+      <p className="text-sm text-text-muted mt-1 max-w-md mx-auto">
         Your support desk queue is currently empty. Get started by submitting a new ticket.
       </p>
       <div className="mt-5">
         <Link
           to="/tickets/new"
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

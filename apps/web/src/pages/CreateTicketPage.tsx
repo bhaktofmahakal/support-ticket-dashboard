@@ -135,10 +135,10 @@ export function CreateTicketPage() {
   const titleLength = form.title.length;
   const isTitleOverLimit = titleLength > 120;
   const titleCounterColor = isTitleOverLimit
-    ? 'text-rose-600 font-bold'
+    ? 'text-danger font-bold font-mono'
     : titleLength >= 110
-    ? 'text-amber-600 font-semibold'
-    : 'text-slate-400';
+    ? 'text-warning font-semibold font-mono'
+    : 'text-text-muted font-mono';
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
@@ -146,17 +146,17 @@ export function CreateTicketPage() {
       <div>
         <Link
           to={returnUrl}
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded p-0.5 mb-2"
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-text-muted hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus rounded p-0.5 mb-2"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           Back to tickets
         </Link>
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-semibold tracking-tight text-text-primary">
           Create New Ticket
         </h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-text-muted mt-1">
           Submit a new customer support ticket to the triage queue.
         </p>
       </div>
@@ -165,9 +165,9 @@ export function CreateTicketPage() {
       {errors.general && (
         <div
           role="alert"
-          className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-sm text-rose-800 flex items-start gap-2.5"
+          className="p-4 bg-danger-surface border border-danger-border rounded-lg text-sm text-text-primary flex items-start gap-2.5"
         >
-          <svg className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-danger flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span>{errors.general}</span>
@@ -178,16 +178,16 @@ export function CreateTicketPage() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="bg-white border border-slate-200 rounded-xl p-5 sm:p-7 shadow-sm space-y-5"
+        className="bg-surface border border-border rounded-lg p-5 sm:p-7 space-y-5"
       >
         {/* Title Field */}
         <div>
           <div className="flex items-center justify-between mb-1.5">
             <label
               htmlFor="ticket-title"
-              className="block text-sm font-medium text-slate-800"
+              className="block text-sm font-medium text-text-secondary"
             >
-              Title <span className="text-rose-500">*</span>
+              Title <span className="text-danger">*</span>
             </label>
             <span
               className={`text-xs ${titleCounterColor}`}
@@ -206,14 +206,14 @@ export function CreateTicketPage() {
             placeholder="Brief summary of the issue (e.g. SSO login failure with Okta)"
             aria-describedby={errors.title ? 'title-error' : undefined}
             aria-invalid={Boolean(errors.title)}
-            className={`w-full px-3.5 py-2.5 text-sm bg-slate-50 hover:bg-white focus:bg-white border rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 min-h-[42px] ${
+            className={`w-full px-3.5 py-2.5 text-sm rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 min-h-[42px] placeholder-text-muted ${
               errors.title
-                ? 'border-rose-400 bg-rose-50/30 focus-visible:ring-rose-500'
-                : 'border-slate-300'
+                ? 'border border-danger bg-danger-surface text-text-primary focus-visible:ring-danger'
+                : 'bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong text-text-primary focus-visible:ring-accent-focus'
             }`}
           />
           {errors.title && (
-            <p id="title-error" className="mt-1.5 text-xs text-rose-600 font-medium">
+            <p id="title-error" className="mt-1.5 text-xs text-danger font-medium">
               {errors.title}
             </p>
           )}
@@ -223,9 +223,9 @@ export function CreateTicketPage() {
         <div>
           <label
             htmlFor="ticket-description"
-            className="block text-sm font-medium text-slate-800 mb-1.5"
+            className="block text-sm font-medium text-text-secondary mb-1.5"
           >
-            Description <span className="text-rose-500">*</span>
+            Description <span className="text-danger">*</span>
           </label>
           <textarea
             id="ticket-description"
@@ -236,14 +236,14 @@ export function CreateTicketPage() {
             placeholder="Detailed description of the issue, symptoms, steps to reproduce..."
             aria-describedby={errors.description ? 'desc-error' : undefined}
             aria-invalid={Boolean(errors.description)}
-            className={`w-full px-3.5 py-2.5 text-sm bg-slate-50 hover:bg-white focus:bg-white border rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+            className={`w-full px-3.5 py-2.5 text-sm rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 placeholder-text-muted ${
               errors.description
-                ? 'border-rose-400 bg-rose-50/30 focus-visible:ring-rose-500'
-                : 'border-slate-300'
+                ? 'border border-danger bg-danger-surface text-text-primary focus-visible:ring-danger'
+                : 'bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong text-text-primary focus-visible:ring-accent-focus'
             }`}
           />
           {errors.description && (
-            <p id="desc-error" className="mt-1.5 text-xs text-rose-600 font-medium">
+            <p id="desc-error" className="mt-1.5 text-xs text-danger font-medium">
               {errors.description}
             </p>
           )}
@@ -255,9 +255,9 @@ export function CreateTicketPage() {
           <div>
             <label
               htmlFor="ticket-email"
-              className="block text-sm font-medium text-slate-800 mb-1.5"
+              className="block text-sm font-medium text-text-secondary mb-1.5"
             >
-              Customer Email <span className="text-rose-500">*</span>
+              Customer Email <span className="text-danger">*</span>
             </label>
             <input
               id="ticket-email"
@@ -268,14 +268,14 @@ export function CreateTicketPage() {
               placeholder="customer@company.com"
               aria-describedby={errors.customerEmail ? 'email-error' : undefined}
               aria-invalid={Boolean(errors.customerEmail)}
-              className={`w-full px-3.5 py-2.5 text-sm bg-slate-50 hover:bg-white focus:bg-white border rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 min-h-[42px] ${
+              className={`w-full px-3.5 py-2.5 text-sm rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 min-h-[42px] placeholder-text-muted ${
                 errors.customerEmail
-                  ? 'border-rose-400 bg-rose-50/30 focus-visible:ring-rose-500'
-                  : 'border-slate-300'
+                  ? 'border border-danger bg-danger-surface text-text-primary focus-visible:ring-danger'
+                  : 'bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong text-text-primary focus-visible:ring-accent-focus'
               }`}
             />
             {errors.customerEmail && (
-              <p id="email-error" className="mt-1.5 text-xs text-rose-600 font-medium">
+              <p id="email-error" className="mt-1.5 text-xs text-danger font-medium">
                 {errors.customerEmail}
               </p>
             )}
@@ -285,9 +285,9 @@ export function CreateTicketPage() {
           <div>
             <label
               htmlFor="ticket-priority"
-              className="block text-sm font-medium text-slate-800 mb-1.5"
+              className="block text-sm font-medium text-text-secondary mb-1.5"
             >
-              Priority <span className="text-rose-500">*</span>
+              Priority <span className="text-danger">*</span>
             </label>
             <select
               id="ticket-priority"
@@ -296,14 +296,14 @@ export function CreateTicketPage() {
               onBlur={() => handleBlur('priority')}
               aria-describedby={errors.priority ? 'priority-error' : undefined}
               aria-invalid={Boolean(errors.priority)}
-              className="w-full px-3.5 py-2.5 text-sm bg-slate-50 hover:bg-white focus:bg-white border border-slate-300 rounded-lg text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 min-h-[42px]"
+              className="w-full px-3.5 py-2.5 text-sm bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong rounded-md text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus min-h-[42px]"
             >
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
             </select>
             {errors.priority && (
-              <p id="priority-error" className="mt-1.5 text-xs text-rose-600 font-medium">
+              <p id="priority-error" className="mt-1.5 text-xs text-danger font-medium">
                 {errors.priority}
               </p>
             )}
@@ -311,22 +311,22 @@ export function CreateTicketPage() {
         </div>
 
         {/* Notice regarding default status */}
-        <p className="text-xs text-slate-500 italic pt-1">
-          * New tickets are automatically initialized with <strong className="text-slate-700">Open</strong> status.
+        <p className="text-xs text-text-muted italic pt-1">
+          * New tickets are automatically initialized with <strong className="text-text-secondary">Open</strong> status.
         </p>
 
         {/* Submit Actions */}
-        <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+        <div className="pt-4 border-t border-border flex items-center justify-end gap-3">
           <Link
             to={returnUrl}
-            className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 min-h-[40px] flex items-center"
+            className="px-4 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-raised rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus min-h-[40px] flex items-center"
           >
             Cancel
           </Link>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center justify-center gap-2 px-5 py-2 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 active:bg-brand-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 min-h-[40px]"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2 text-sm font-medium text-white bg-accent hover:bg-accent-hover active:bg-accent-focus disabled:opacity-50 disabled:cursor-not-allowed rounded-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus min-h-[40px]"
           >
             {isSubmitting ? (
               <>

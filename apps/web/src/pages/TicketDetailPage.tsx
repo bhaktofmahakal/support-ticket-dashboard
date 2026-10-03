@@ -47,18 +47,18 @@ export function TicketDetailPage() {
   // 1. Non-numeric or negative ID check
   if (!isIdValid) {
     return (
-      <div className="max-w-xl mx-auto py-12 text-center bg-white rounded-xl border border-slate-200 p-8 shadow-sm">
-        <div className="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
+      <div className="max-w-xl mx-auto py-12 text-center bg-surface rounded-lg border border-border p-8">
+        <div className="w-12 h-12 bg-danger-surface text-danger border border-danger-border rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg font-mono">
           ?
         </div>
-        <h2 className="text-xl font-bold text-slate-900">Invalid Ticket ID</h2>
-        <p className="text-sm text-slate-500 mt-1">
+        <h2 className="text-xl font-semibold text-text-primary">Invalid Ticket ID</h2>
+        <p className="text-sm text-text-muted mt-1">
           The requested ticket ID is malformed or invalid.
         </p>
         <div className="mt-5">
           <Link
             to={returnUrl}
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus"
           >
             Return to Tickets
           </Link>
@@ -71,11 +71,11 @@ export function TicketDetailPage() {
   if (isLoading) {
     return (
       <div className="max-w-4xl mx-auto space-y-6" aria-label="Loading ticket details...">
-        <div className="h-6 w-32 bg-slate-200 rounded animate-pulse" />
-        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4 animate-pulse">
-          <div className="h-8 bg-slate-200 rounded w-3/4" />
-          <div className="h-4 bg-slate-100 rounded w-1/3" />
-          <div className="h-24 bg-slate-100 rounded w-full mt-4" />
+        <div className="h-6 w-32 bg-surface-raised rounded-md animate-pulse" />
+        <div className="bg-surface rounded-lg border border-border p-6 space-y-4 animate-pulse">
+          <div className="h-8 bg-surface-raised rounded-md w-3/4" />
+          <div className="h-4 bg-surface-raised/60 rounded-md w-1/3" />
+          <div className="h-24 bg-surface-raised/40 rounded-md w-full mt-4" />
         </div>
       </div>
     );
@@ -87,18 +87,18 @@ export function TicketDetailPage() {
 
     if (is404) {
       return (
-        <div className="max-w-xl mx-auto py-12 text-center bg-white rounded-xl border border-slate-200 p-8 shadow-sm">
-          <div className="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-3.5 font-bold font-mono text-xl">
+        <div className="max-w-xl mx-auto py-12 text-center bg-surface rounded-lg border border-border p-8">
+          <div className="w-14 h-14 bg-warning-surface text-warning border border-warning-border rounded-xl flex items-center justify-center mx-auto mb-3.5 font-bold font-mono text-xl">
             404
           </div>
-          <h2 className="text-xl font-bold text-slate-900">Ticket Not Found</h2>
-          <p className="text-sm text-slate-500 mt-1">
+          <h2 className="text-xl font-semibold text-text-primary">Ticket Not Found</h2>
+          <p className="text-sm text-text-muted mt-1">
             Ticket #{ticketId} does not exist or may have been deleted.
           </p>
           <div className="mt-5">
             <Link
               to={returnUrl}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus"
             >
               Return to Tickets
             </Link>
@@ -169,7 +169,7 @@ export function TicketDetailPage() {
       <div>
         <Link
           to={returnUrl}
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded p-0.5"
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-text-muted hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus rounded p-0.5"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -179,12 +179,12 @@ export function TicketDetailPage() {
       </div>
 
       {/* Main Ticket Card */}
-      <article className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden divide-y divide-slate-100">
+      <article className="bg-surface border border-border rounded-lg overflow-hidden divide-y divide-border">
         {/* Header Section */}
         <div className="p-5 sm:p-7">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-sm font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
+              <span className="font-mono text-sm font-bold text-text-muted bg-surface-raised border border-border px-2 py-0.5 rounded-xs">
                 #{ticket.id}
               </span>
               <StatusBadge status={ticket.status} />
@@ -192,29 +192,29 @@ export function TicketDetailPage() {
             </div>
 
             {/* Timestamps */}
-            <div className="flex items-center gap-4 text-xs text-slate-500">
+            <div className="flex items-center gap-4 text-xs text-text-muted font-mono">
               <span title={ticket.createdAt}>
-                Created: <time dateTime={ticket.createdAt} className="font-medium text-slate-700">{formatDate(ticket.createdAt)}</time>
+                Created: <time dateTime={ticket.createdAt} className="font-medium text-text-secondary">{formatDate(ticket.createdAt)}</time>
               </span>
               <span title={ticket.updatedAt}>
-                Updated: <time dateTime={ticket.updatedAt} className="font-medium text-slate-700">{formatDate(ticket.updatedAt)}</time>
+                Updated: <time dateTime={ticket.updatedAt} className="font-medium text-text-secondary">{formatDate(ticket.updatedAt)}</time>
               </span>
             </div>
           </div>
 
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-snug">
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-text-primary leading-snug">
             {ticket.title}
           </h1>
 
           {/* Customer Metadata bar */}
-          <div className="mt-4 flex items-center gap-2 text-sm text-slate-600 bg-slate-50 border border-slate-200/60 rounded-lg px-3.5 py-2">
-            <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="mt-4 flex items-center gap-2 text-sm text-text-secondary bg-surface-raised border border-border rounded-md px-3.5 py-2">
+            <svg className="w-4 h-4 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
-            <span className="text-xs text-slate-500 font-medium">Customer:</span>
+            <span className="text-xs text-text-muted font-medium">Customer:</span>
             <a
               href={`mailto:${ticket.customerEmail}`}
-              className="font-medium text-slate-800 hover:text-brand-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
+              className="font-medium text-text-primary hover:text-accent-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus rounded"
             >
               {ticket.customerEmail}
             </a>
@@ -223,25 +223,25 @@ export function TicketDetailPage() {
 
         {/* Description Section */}
         <div className="p-5 sm:p-7 space-y-2">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
             Description
           </h2>
-          <div className="text-slate-800 text-sm sm:text-base leading-relaxed whitespace-pre-wrap font-normal">
+          <div className="text-text-primary text-sm sm:text-base leading-relaxed whitespace-pre-wrap font-normal">
             {ticket.description}
           </div>
         </div>
 
         {/* Inline Triage Controls Section */}
-        <div className="p-5 sm:p-7 bg-slate-50/50">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">
+        <div className="p-5 sm:p-7 bg-surface-raised/40">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">
             Ticket Management & Triage
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Status Selector */}
-            <div className="bg-white p-4 border border-slate-200 rounded-xl shadow-xs">
+            <div className="bg-surface p-4 border border-border rounded-lg">
               <label
                 htmlFor="update-status"
-                className="block text-xs font-medium text-slate-600 mb-1.5"
+                className="block text-xs font-medium text-text-secondary mb-1.5"
               >
                 Change Status
               </label>
@@ -251,7 +251,7 @@ export function TicketDetailPage() {
                   value={selectedStatus}
                   disabled={isUpdatingStatus}
                   onChange={(e) => handleStatusChange(e.target.value as TicketStatus)}
-                  className="w-full px-3.5 py-2 text-sm bg-white border border-slate-300 rounded-lg text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px]"
+                  className="w-full px-3.5 py-2 text-sm bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong rounded-md text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px]"
                 >
                   <option value="Open">Open</option>
                   <option value="In Progress">In Progress</option>
@@ -259,7 +259,7 @@ export function TicketDetailPage() {
                 </select>
                 {isUpdatingStatus && (
                   <div className="absolute right-8 top-1/2 -translate-y-1/2">
-                    <svg className="animate-spin w-4 h-4 text-brand-600" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
@@ -269,10 +269,10 @@ export function TicketDetailPage() {
             </div>
 
             {/* Priority Selector */}
-            <div className="bg-white p-4 border border-slate-200 rounded-xl shadow-xs">
+            <div className="bg-surface p-4 border border-border rounded-lg">
               <label
                 htmlFor="update-priority"
-                className="block text-xs font-medium text-slate-600 mb-1.5"
+                className="block text-xs font-medium text-text-secondary mb-1.5"
               >
                 Change Priority
               </label>
@@ -282,7 +282,7 @@ export function TicketDetailPage() {
                   value={selectedPriority}
                   disabled={isUpdatingPriority}
                   onChange={(e) => handlePriorityChange(e.target.value as TicketPriority)}
-                  className="w-full px-3.5 py-2 text-sm bg-white border border-slate-300 rounded-lg text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px]"
+                  className="w-full px-3.5 py-2 text-sm bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong rounded-md text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px]"
                 >
                   <option value="High">High</option>
                   <option value="Medium">Medium</option>
@@ -290,7 +290,7 @@ export function TicketDetailPage() {
                 </select>
                 {isUpdatingPriority && (
                   <div className="absolute right-8 top-1/2 -translate-y-1/2">
-                    <svg className="animate-spin w-4 h-4 text-brand-600" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>

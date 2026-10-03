@@ -10,20 +10,40 @@ export function StatusBadge({ status, size = 'md' }: StatusBadgeProps) {
   const sizeClasses = size === 'sm' ? 'px-2 py-0.5 text-xs' : 'px-2.5 py-1 text-xs';
 
   let colorClasses = '';
-  let dotClass = '';
+  let iconElement: React.ReactNode = null;
 
   switch (status) {
     case 'Open':
-      colorClasses = 'bg-blue-50 text-blue-700 border-blue-200';
-      dotClass = 'bg-blue-500';
+      colorClasses = 'bg-accent/15 text-accent-hover border-accent/30';
+      iconElement = (
+        <span
+          className="w-1.5 h-1.5 rounded-full border border-current flex-shrink-0"
+          aria-hidden="true"
+        />
+      );
       break;
     case 'In Progress':
-      colorClasses = 'bg-amber-50 text-amber-800 border-amber-200';
-      dotClass = 'bg-amber-500 animate-pulse';
+      colorClasses = 'bg-warning-surface text-warning border-warning-border';
+      iconElement = (
+        <span
+          className="w-1.5 h-1.5 rounded-full bg-warning animate-pulse flex-shrink-0"
+          aria-hidden="true"
+        />
+      );
       break;
     case 'Resolved':
-      colorClasses = 'bg-emerald-50 text-emerald-700 border-emerald-200';
-      dotClass = 'bg-emerald-500';
+      colorClasses = 'bg-success-surface text-success border-success-border';
+      iconElement = (
+        <svg
+          className="w-3 h-3 text-success flex-shrink-0"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+        </svg>
+      );
       break;
   }
 
@@ -31,8 +51,8 @@ export function StatusBadge({ status, size = 'md' }: StatusBadgeProps) {
     <span
       className={`inline-flex items-center gap-1.5 font-medium border rounded-full ${sizeClasses} ${colorClasses}`}
     >
-      <span className={`w-1.5 h-1.5 rounded-full ${dotClass}`} aria-hidden="true" />
-      {status}
+      {iconElement}
+      <span>{status}</span>
     </span>
   );
 }
@@ -46,24 +66,57 @@ export function PriorityBadge({ priority, size = 'md' }: PriorityBadgeProps) {
   const sizeClasses = size === 'sm' ? 'px-2 py-0.5 text-xs' : 'px-2.5 py-1 text-xs';
 
   let colorClasses = '';
+  let iconElement: React.ReactNode = null;
 
   switch (priority) {
     case 'High':
-      colorClasses = 'bg-rose-50 text-rose-700 border-rose-200 font-semibold';
+      colorClasses = 'bg-danger-surface text-danger border-danger-border font-semibold';
+      iconElement = (
+        <svg
+          className="w-3 h-3 text-danger flex-shrink-0"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M12 4l9 16H3l9-16z" />
+        </svg>
+      );
       break;
     case 'Medium':
-      colorClasses = 'bg-orange-50 text-orange-700 border-orange-200 font-medium';
+      colorClasses = 'bg-warning-surface text-warning border-warning-border font-medium';
+      iconElement = (
+        <svg
+          className="w-3 h-3 text-warning flex-shrink-0"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M4 9h16v2H4V9zm0 4h16v2H4v-2z" />
+        </svg>
+      );
       break;
     case 'Low':
-      colorClasses = 'bg-slate-100 text-slate-700 border-slate-200 font-normal';
+      colorClasses = 'bg-surface-raised text-text-secondary border-border font-normal';
+      iconElement = (
+        <svg
+          className="w-3 h-3 text-text-muted flex-shrink-0"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      );
       break;
   }
 
   return (
     <span
-      className={`inline-flex items-center font-medium border rounded-md ${sizeClasses} ${colorClasses}`}
+      className={`inline-flex items-center gap-1.5 font-medium border rounded-xs ${sizeClasses} ${colorClasses}`}
     >
-      {priority}
+      {iconElement}
+      <span>{priority}</span>
     </span>
   );
 }

@@ -51,14 +51,14 @@ export function TicketFilterBar({
   };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-3">
+    <div className="bg-surface border border-border rounded-lg p-4 space-y-3">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
         {/* Search Input (5 cols on lg) */}
         <div className="lg:col-span-5 relative">
           <label htmlFor="ticket-search" className="sr-only">
             Search tickets by title or customer email
           </label>
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-muted">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
@@ -74,14 +74,14 @@ export function TicketFilterBar({
             value={localSearch}
             onChange={(e) => setLocalSearch(e.target.value)}
             placeholder="Search by title or email..."
-            className="w-full pl-9 pr-9 py-2 text-sm bg-slate-50 hover:bg-white focus:bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:border-brand-500 min-h-[40px]"
+            className="w-full pl-9 pr-9 py-2 text-sm bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong rounded-md text-text-primary placeholder-text-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus min-h-[40px]"
           />
           {localSearch && (
             <button
               type="button"
               onClick={handleClearSearch}
               aria-label="Clear search text"
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-r-lg"
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-text-muted hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus rounded-r-md"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -99,7 +99,7 @@ export function TicketFilterBar({
             id="ticket-status-filter"
             value={status}
             onChange={(e) => onStatusChange(e.target.value as TicketStatus | '')}
-            className="w-full px-3 py-2 text-sm bg-slate-50 hover:bg-white focus:bg-white border border-slate-300 rounded-lg text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 min-h-[40px]"
+            className="w-full px-3 py-2 text-sm bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong rounded-md text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus min-h-[40px]"
           >
             <option value="">All Statuses</option>
             <option value="Open">Open</option>
@@ -117,7 +117,7 @@ export function TicketFilterBar({
             id="ticket-priority-filter"
             value={priority}
             onChange={(e) => onPriorityChange(e.target.value as TicketPriority | '')}
-            className="w-full px-3 py-2 text-sm bg-slate-50 hover:bg-white focus:bg-white border border-slate-300 rounded-lg text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 min-h-[40px]"
+            className="w-full px-3 py-2 text-sm bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong rounded-md text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus min-h-[40px]"
           >
             <option value="">All Priorities</option>
             <option value="High">High</option>
@@ -135,7 +135,7 @@ export function TicketFilterBar({
             id="ticket-sort"
             value={sort}
             onChange={(e) => onSortChange(e.target.value as 'newest' | 'oldest')}
-            className="w-full px-3 py-2 text-sm bg-slate-50 hover:bg-white focus:bg-white border border-slate-300 rounded-lg text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 min-h-[40px]"
+            className="w-full px-3 py-2 text-sm bg-surface-raised hover:bg-surface-overlay focus:bg-surface-overlay border border-border focus:border-border-strong rounded-md text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus min-h-[40px]"
           >
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>
@@ -148,10 +148,10 @@ export function TicketFilterBar({
             <button
               type="button"
               onClick={onClearFilters}
-              className="w-full lg:w-auto inline-flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 min-h-[40px]"
+              className="w-full lg:w-auto inline-flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium text-text-secondary hover:text-text-primary bg-surface-raised hover:bg-surface-overlay border border-border hover:border-border-strong rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus min-h-[40px]"
               title="Clear all active filters"
             >
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-3.5 h-3.5 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
               <span>Clear</span>

@@ -22,11 +22,11 @@ export function TicketCards({ tickets, rawQueryString }: TicketCardsProps) {
             key={ticket.id}
             to={detailUrl}
             state={{ fromListSearch: returnQuery }}
-            className="block p-4 bg-white border border-slate-200 rounded-xl shadow-sm hover:border-brand-300 hover:shadow transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+            className="block p-4 bg-surface border border-border hover:border-border-strong rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-focus"
           >
             {/* Header: ID + Badges */}
             <div className="flex items-center justify-between gap-2 mb-2">
-              <span className="text-xs font-mono font-medium text-slate-400">
+              <span className="text-xs font-mono font-medium text-text-muted">
                 #{ticket.id}
               </span>
               <div className="flex items-center gap-2">
@@ -36,16 +36,16 @@ export function TicketCards({ tickets, rawQueryString }: TicketCardsProps) {
             </div>
 
             {/* Title */}
-            <h3 className="font-semibold text-slate-900 line-clamp-2 text-sm sm:text-base leading-snug">
+            <h3 className="font-semibold text-text-primary line-clamp-2 text-sm sm:text-base leading-snug">
               {ticket.title}
             </h3>
 
             {/* Footer: Email + Timestamp */}
-            <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 gap-2">
-              <span className="truncate max-w-[200px]" title={ticket.customerEmail}>
+            <div className="mt-3 pt-2.5 border-t border-border flex items-center justify-between text-xs text-text-muted gap-2">
+              <span className="truncate max-w-[200px] text-text-secondary" title={ticket.customerEmail}>
                 {ticket.customerEmail}
               </span>
-              <time dateTime={ticket.createdAt} title={ticket.createdAt} className="whitespace-nowrap flex-shrink-0">
+              <time dateTime={ticket.createdAt} title={ticket.createdAt} className="whitespace-nowrap flex-shrink-0 font-mono">
                 {formatDate(ticket.createdAt)}
               </time>
             </div>
