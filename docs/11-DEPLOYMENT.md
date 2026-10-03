@@ -52,7 +52,7 @@ services:
     runtime: node
     plan: free
     region: oregon
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci --include=dev && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:
@@ -125,7 +125,7 @@ npm start
    - **Branch**: `main`
    - **Root Directory**: (leave blank)
    - **Runtime**: `Node`
-   - **Build Command**: `npm ci && npm run build`
+   - **Build Command**: `npm ci --include=dev && npm run build`
    - **Start Command**: `npm start`
    - **Plan**: `Free`
 4. **Environment Variables**:
